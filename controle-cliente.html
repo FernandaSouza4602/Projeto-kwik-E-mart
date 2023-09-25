@@ -24,7 +24,7 @@
           <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="/cliente.html">Cliente</a>
+                <a class="nav-link" href="/controle-cliente.html">Cliente</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/produto.html">Produtos</a>
@@ -79,9 +79,7 @@
                      </tr>
                     </thead>
                     <tbody>
-                      
-                        
-    
+            
                     </tbody>
                 </table>
 
@@ -105,32 +103,37 @@
 
                         <div class="row">
                           <div class="col-sm-2">
-                            <label for="id" class="form-label">Id:</label>
+                            <label for="id" class="form-label">Id</label>
                             <input disabled type="text" class="form-control" id="id">                         
                           </div>
 
                           <div class="col-sm-10">
-                            <label for="nome" class="form-label">Nome:</label>
+                            <label for="nome" class="form-label">Nome</label>
                             <input type="text" class="form-control" id="nome">                         
                           </div>
                         </div>
 
                         <div class="row">
-                         <div class="col-sm-6">
-                          <label for="email" class="form-label">E-mail:</label>
+                         <div class="col-sm-4">
+                          <label for="email" class="form-label">E-mail</label>
                           <input type="text" class="form-control" id="email">                         
                          </div>
 
-                          <div class="col-sm-3">
-                            <label for="telefone" class="form-label">Telefone:</label>
+                          <div class="col-sm-2">
+                            <label for="telefone" class="form-label">Telefone</label>
                             <input type="text" class="form-control" id="telefone">                         
                           </div>
 
                           <div class="col-sm-3">
-                            <label for="cpf" class="form-label">CPF:</label>
+                            <label for="cpf" class="form-label">CPF</label>
                             <input type="text" class="form-control" id="cpf">                         
                           </div>
+
+                        <div class="col-sm-3">
+                          <label for="dataCadastro" class="form-label">DataCadastro</label>
+                          <input type="date" class="form-control" id="dataCadastro">                         
                         </div>
+                      </div>
 
     
                     </div>
@@ -145,7 +148,8 @@
               </div>
         </div>
       </div>
-
-      <script src="./js/cliente.js"></script>
+      
+      <script src="./js/model/Cliente.js"></script>
+      <script src="./js/controle-cliente.js"></script>
 </body>
 </html>

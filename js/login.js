@@ -15,7 +15,7 @@ btnEntrar.addEventListener('click', () => {
 
     autenticar(userEmail, userSenha);
 
-    window.open('cliente.html', '_self')
+    window.open('controle-cliente.html', '_self')
 })
 
 
@@ -42,7 +42,7 @@ function autenticar(email, senha){
         salvarToken(response.token);
         salvarUsuario(response.usuario);
         
-        window.open('cliente.html', '_self');
+        window.open('controle-cliente.html', '_self');
         }
     })
     .catch(erro => {
