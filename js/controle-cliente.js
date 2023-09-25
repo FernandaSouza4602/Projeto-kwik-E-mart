@@ -36,14 +36,13 @@ btnSalvar.addEventListener('click', () => {
         return;
     }
 
-    adicionarClienteBackend(cliente);
+    (modoEdição) ? atualizarClienteBackend(cliente) : adicionarClienteBackend(cliente);
 
-    
-})
+});
 
 btnCancelar.addEventListener('click', () => {
     modalCliente.hide();
-})
+});
 
 
 function obterClienteDoModal(){
@@ -54,8 +53,10 @@ function obterClienteDoModal(){
         email: formModal.email.value,
         telefone: formModal.telefone.value,
         cpfOuCnpj: formModal.cpf.value,
-        dataCadastro: formModal.dataCadastro.value,
-    })
+        dataCadastro: (formModal.dataCadastro.value) 
+                 ? new Date(formModal.dataCadastro.value).toISOString()
+                 : new Date().toISOString()
+    });
 }
 
 function obterClientes() {
@@ -104,7 +105,12 @@ function limparModalCliente(){
 }
 
 function excluirCliente(id){
-    alert('Aqui vou excluir o cliente ' + id);
+
+    let cliente = listaClientes.concat.find(c => c.id == id);
+   
+    if(confirm("Deseja realmente excluir o cliente " + cliente.nome)){
+        excluirClienteBackend(cliente);
+    }
 }
 
 function criarLinhaNaTabela(cliente){
@@ -124,15 +130,15 @@ function criarLinhaNaTabela(cliente){
         tdNome.textContent = cliente.nome;
         tdCPF.textContent = cliente.cpfOuCnpj;
         tdEmail.textContent = cliente.email;
-        tdDataCadastro.textContent = cliente.dataCadastro;
+        tdDataCadastro.textContent = new Date(cliente.dataCadastro).toLocaleDateString();
         tdTelefone.textContent = cliente.telefone;
 
         tdAcoes.innerHTML = `<button onclick="editarCliente(${cliente.id})" class="btn btn-outline-primary btn-sm mr-3">
-        Editar
-        </button>
-        <button onclick="excluirCliente(${cliente.id})" class="btn btn-outline-primary btn-sm mr-3">
-        Excluir
-        </button>`;
+                               Editar
+                             </button>
+                             <button onclick="excluirCliente(${cliente.id})" class="btn btn-outline-primary btn-sm mr-3">
+                               Excluir
+                             </button>`;
 
 
         tr.appendChild(tdId);
@@ -148,6 +154,7 @@ function criarLinhaNaTabela(cliente){
 function popularTabela(clientes){
 
     tabelaCliente.textContent = "";
+
     clientes.forEach(cliente => {
         criarLinhaNaTabela(cliente);
     });
@@ -162,7 +169,7 @@ function adicionarClienteBackend(cliente){
         method: "POST",  // or 'PUT'
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': "token"
+            'Authorization': "obterToken"
         },
         body : JSON.stringify(cliente)
     })
@@ -179,6 +186,56 @@ function adicionarClienteBackend(cliente){
     .catch(error => {
         console.log(error)
     })
+}
+
+function atualizarClienteBackend(cliente){
+
+    fetch(`${URL}/${cliente.id}`, {
+        method: "PUT",  // or 'PUT'
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': obterToken()
+        },
+        body : JSON.stringify(cliente)
+    })
+    .then(response => response.json())
+    .then(() => {
+       atualizarClienteNaLista(cliente, false);
+       modalCliente.hide();
+    })
+    .catch(error => {
+        console.log(error)
+    });
+}
+
+function excluirClienteBackend(cliente){
+
+    fetch(`${URL}/${cliente.id}`, {
+        method: "DELETE",  // or 'PUT'
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': obterToken()
+        },
+    })
+    .then(response => response.json())
+    .then(() => {
+       atualizarClienteNaLista(cliente, true);
+       modalCliente.hide();
+    })
+    .catch(error => {
+        console.log(error)
+    })
+}
+
+function atualizarClienteNaLista(cliente, removerCliente){
+
+    let indice = listaClientes.findIndex((c) => c.id == cliente.id);
+
+    (removerCliente)
+        ? listaClientes.splice(indice, 1)
+        : listaClientes.splice(indice, 1, cliente);
+
+    popularTabela(listaClientes);
 }
 
 obterClientes();
