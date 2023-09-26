@@ -30,3 +30,29 @@ button.btn {
 #loading{
     display: none;
 }
+
+nav ul { 
+    list-style: none; 
+    margin: 0; 
+    padding: 0; 
+  } 
+   
+  nav ul li { 
+    display: inline-block; 
+  } 
+   
+  nav ul li a { 
+    display: block; 
+    padding: 10px 20px; /* adjust padding as needed */ 
+    text-decoration: none; 
+  } 
+   
+  nav ul li + li { 
+    margin-left: 80px; /* adjust margin as needed */ 
+  }
+
+  .navbar-brand{
+  font-size: 35px;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  margin-left: 20px;
+  }
