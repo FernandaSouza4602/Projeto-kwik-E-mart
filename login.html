@@ -1,42 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="stylesheet" href="./css/base.css">
-    <link rel="stylesheet" href="./css/login.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="./css/base.css" />
+    <link rel="stylesheet" href="./css/login.css" />
 </head>
+
 <body>
-
     <div class="caixa-login">
-
         <div class="titulo-login">
             <h1>Login</h1>
         </div>
 
-
         <div class="grupo">
-            <label for="email">E-mail</label> <br>
-            <input id="email" type="text" placeholder="exemplo@exemplo.com">
+            <label for="email">E-mail</label> <br />
+            <input id="email" type="text" placeholder="exemplo@exemplo.com" />
         </div>
 
-
         <div class="grupo">
-            <label for="senha">Senha</label> <br>
-            <input id="senha" type="password">
+            <label for="senha">Senha</label> <br />
+            <input id="senha" type="password" />
         </div>
-
 
         <div class="esqueci-minha-senha">
             <a href="#"> Esqueci minha senha</a>
         </div>
 
-
         <button id="btn-entrar">Entrar</button>
-
     </div>
-    
+
+    <div id="loading">
+        <?xml version="1.0" encoding="utf-8"?>
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            style="margin: auto; background: none; display: block; shape-rendering: auto;" width="450px" height="450px"
+            viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+            <circle cx="84" cy="50" r="10" fill="#0491c7">
+                <animate attributeName="r" repeatCount="indefinite" dur="0.5952380952380952s" calcMode="spline"
+                    keyTimes="0;1" values="10;0" keySplines="0 0.5 0.5 1" begin="0s"></animate>
+                <animate attributeName="fill" repeatCount="indefinite" dur="2.380952380952381s" calcMode="discrete"
+                    keyTimes="0;0.25;0.5;0.75;1" values="#0491c7;#b7b7b7;#f70004;#50be03;#0491c7" begin="0s"></animate>
+            </circle>
+            <circle cx="16" cy="50" r="10" fill="#0491c7">
+                <animate attributeName="r" repeatCount="indefinite" dur="2.380952380952381s" calcMode="spline"
+                    keyTimes="0;0.25;0.5;0.75;1" values="0;0;10;10;10"
+                    keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="0s"></animate>
+                <animate attributeName="cx" repeatCount="indefinite" dur="2.380952380952381s" calcMode="spline"
+                    keyTimes="0;0.25;0.5;0.75;1" values="16;16;16;50;84"
+                    keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="0s"></animate>
+            </circle>
+            <circle cx="50" cy="50" r="10" fill="#50be03">
+                <animate attributeName="r" repeatCount="indefinite" dur="2.380952380952381s" calcMode="spline"
+                    keyTimes="0;0.25;0.5;0.75;1" values="0;0;10;10;10"
+                    keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.5952380952380952s"></animate>
+                <animate attributeName="cx" repeatCount="indefinite" dur="2.380952380952381s" calcMode="spline"
+                    keyTimes="0;0.25;0.5;0.75;1" values="16;16;16;50;84"
+                    keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-0.5952380952380952s"></animate>
+            </circle>
+            <circle cx="84" cy="50" r="10" fill="#f70004">
+                <animate attributeName="r" repeatCount="indefinite" dur="2.380952380952381s" calcMode="spline"
+                    keyTimes="0;0.25;0.5;0.75;1" values="0;0;10;10;10"
+                    keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-1.1904761904761905s"></animate>
+                <animate attributeName="cx" repeatCount="indefinite" dur="2.380952380952381s" calcMode="spline"
+                    keyTimes="0;0.25;0.5;0.75;1" values="16;16;16;50;84"
+                    keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-1.1904761904761905s"></animate>
+            </circle>
+            <circle cx="16" cy="50" r="10" fill="#b7b7b7">
+                <animate attributeName="r" repeatCount="indefinite" dur="2.380952380952381s" calcMode="spline"
+                    keyTimes="0;0.25;0.5;0.75;1" values="0;0;10;10;10"
+                    keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-1.7857142857142856s"></animate>
+                <animate attributeName="cx" repeatCount="indefinite" dur="2.380952380952381s" calcMode="spline"
+                    keyTimes="0;0.25;0.5;0.75;1" values="16;16;16;50;84"
+                    keySplines="0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1;0 0.5 0.5 1" begin="-1.7857142857142856s"></animate>
+            </circle>
+            <!-- [ldio] generated by https://loading.io/ -->
+        </svg>
+    </div>
+
+    <script src="./js/base.js"></script>
     <script src="./js/login.js"></script>
 </body>
+
 </html>

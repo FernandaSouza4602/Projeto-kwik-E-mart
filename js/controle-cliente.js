@@ -1,5 +1,5 @@
 const URL = 'http://localhost:3400/clientes';
-let modoEdição = false;
+let modoEdicao = false;
 
 let listaClientes = [];
 
@@ -8,8 +8,8 @@ let tabelaCliente = document.querySelector('table>tbody');
 let modalCliente = new bootstrap.Modal(document.getElementById("modal-cliente"), {});
 let tituloModal = document.querySelector('h4.modal-title');
 
-let btnSalvar =  document.getElementById('btn-salvar');
-let btnCancelar =  document.getElementById('btn-cancelar');
+let btnSalvar = document.getElementById('btn-salvar');
+let btnCancelar = document.getElementById('btn-cancelar');
 
 let formModal = {
     id: document.getElementById('id'),
@@ -17,26 +17,33 @@ let formModal = {
     email: document.getElementById('email'),
     telefone: document.getElementById('telefone'),
     cpf: document.getElementById('cpf'),
-    dataCadastro: document.getElementById('dataCadastro'),
+    dataCadastro: document.getElementById('dataCadastro')
 }
 
 btnAdicionar.addEventListener('click', () =>{
-    modoEdição = false;
+    modoEdicao = false;
     tituloModal.textContent = "Adicionar cliente"
     limparModalCliente();
     modalCliente.show();
 });
 
 btnSalvar.addEventListener('click', () => {
-
+    // 1° Capturar os dados do modal
     let cliente = obterClienteDoModal();
 
+    // 2° Se os campos obrigatorios foram preenchidos.
     if(!cliente.cpfOuCnpj || !cliente.email){
         alert("E-mail e CPF são obrigatórios.")
         return;
     }
 
-    (modoEdição) ? atualizarClienteBackend(cliente) : adicionarClienteBackend(cliente);
+    // if(modoEdicao){
+    //     atualizarClienteBackEnd(cliente);
+    // }else{
+    //     adicionarClienteBackEnd(cliente);
+    // }
+
+    (modoEdicao) ? atualizarClienteBackEnd(cliente) : adicionarClienteBackEnd(cliente);
 
 });
 
@@ -44,44 +51,45 @@ btnCancelar.addEventListener('click', () => {
     modalCliente.hide();
 });
 
-
 function obterClienteDoModal(){
-    
+
     return new Cliente({
         id: formModal.id.value,
-        nome: formModal.nome.value,
         email: formModal.email.value,
-        telefone: formModal.telefone.value,
+        nome: formModal.nome.value,
         cpfOuCnpj: formModal.cpf.value,
+        telefone: formModal.telefone.value,
         dataCadastro: (formModal.dataCadastro.value) 
-                 ? new Date(formModal.dataCadastro.value).toISOString()
-                 : new Date().toISOString()
+                ? new Date(formModal.dataCadastro.value).toISOString()
+                : new Date().toISOString()
     });
 }
-
+ 
 function obterClientes() {
 
     fetch(URL, {
-        method : "GET"
+        method: 'GET',
+        headers :{
+            'Authorization': obterToken()
+        }
     })
-    .then(response => response.json())
-    .then(clientes =>{
-        listaClientes = clientes;
-        popularTabela(clientes);
-    })
-    .catch()
+        .then(response => response.json())
+        .then(clientes => {
+            listaClientes = clientes;
+            popularTabela(clientes);
+        })
+        .catch()
 }
 
 function editarCliente(id){
-    modoEdição = true;
-    tituloModal.textContent = "Editar Cliente";
+    modoEdicao = true;
+    tituloModal.textContent = "Editar cliente"
 
     let cliente = listaClientes.find(cliente => cliente.id == id);
-
+    
     atualizarModalCliente(cliente);
 
     modalCliente.show();
-    //alert('Aqui vou editar o cliente ' + id);
 }
 
 function atualizarModalCliente(cliente){
@@ -96,7 +104,7 @@ function atualizarModalCliente(cliente){
 
 function limparModalCliente(){
 
-    formModal.id.value = "";
+    formModal.id.value ="";
     formModal.nome.value = "";
     formModal.cpf.value = "";
     formModal.email.value = "";
@@ -106,53 +114,61 @@ function limparModalCliente(){
 
 function excluirCliente(id){
 
-    let cliente = listaClientes.concat.find(c => c.id == id);
-   
+    let cliente = listaClientes.find(c => c.id == id);
+
     if(confirm("Deseja realmente excluir o cliente " + cliente.nome)){
-        excluirClienteBackend(cliente);
+        excluirClienteBackEnd(cliente);
     }
+    
 }
 
-function criarLinhaNaTabela(cliente){
-
+function criarLinhaNaTabela(cliente) {
+    // 1° Criar uma linha da tabela OK
     let tr = document.createElement('tr');
-        
-        let tdId = document.createElement('td');
-        let tdNome = document.createElement('td');
-        let tdCPF = document.createElement('td');
-        let tdEmail = document.createElement('td');
-        let tdTelefone = document.createElement('td');
-        let tdAcoes = document.createElement('td');
-        let tdDataCadastro = document.createElement('td');
-        
 
-        tdId.textContent = cliente.id;
-        tdNome.textContent = cliente.nome;
-        tdCPF.textContent = cliente.cpfOuCnpj;
-        tdEmail.textContent = cliente.email;
-        tdDataCadastro.textContent = new Date(cliente.dataCadastro).toLocaleDateString();
-        tdTelefone.textContent = cliente.telefone;
-
-        tdAcoes.innerHTML = `<button onclick="editarCliente(${cliente.id})" class="btn btn-outline-primary btn-sm mr-3">
-                               Editar
-                             </button>
-                             <button onclick="excluirCliente(${cliente.id})" class="btn btn-outline-primary btn-sm mr-3">
-                               Excluir
-                             </button>`;
+    // 2° Criar as TDs OK
+    let tdId = document.createElement('td');
+    let tdNome = document.createElement('td');
+    let tdCPF = document.createElement('td');
+    let tdEmail = document.createElement('td');
+    let tdTelefone = document.createElement('td');
+    let tdDataCadastro = document.createElement('td');
+    let tdAcoes = document.createElement('td');
 
 
-        tr.appendChild(tdId);
-        tr.appendChild(tdNome);
-        tr.appendChild(tdCPF);
-        tr.appendChild(tdEmail);
-        tr.appendChild(tdTelefone);
-        tr.appendChild(tdDataCadastro);
-        tr.appendChild(tdAcoes);
+    // 3° Atualizar as Tds com os valores do cliente OK
+    tdId.textContent = cliente.id;
+    tdNome.textContent = cliente.nome;
+    tdCPF.textContent = cliente.cpfOuCnpj;
+    tdEmail.textContent = cliente.email;
+    tdDataCadastro.textContent = new Date(cliente.dataCadastro).toLocaleDateString();
+    tdTelefone.textContent = cliente.telefone;
 
-        tabelaCliente.appendChild(tr);
+    tdAcoes.innerHTML = `<button onclick="editarCliente(${cliente.id})" class="btn btn-outline-primary btn-sm mr-3">
+                             Editar
+                         </button>
+                         <button onclick="excluirCliente(${cliente.id})" class="btn btn-outline-primary btn-sm mr-3">
+                             Excluir
+                         </button>`;
+
+
+
+    // 4° Adicionar as TDs dentro da linha criei. OK
+    tr.appendChild(tdId);
+    tr.appendChild(tdNome);
+    tr.appendChild(tdCPF);
+    tr.appendChild(tdEmail);
+    tr.appendChild(tdTelefone);
+    tr.appendChild(tdDataCadastro);
+    tr.appendChild(tdAcoes);
+
+    // 5° Adicionar a linha na tabela.
+    tabelaCliente.appendChild(tr);
 }
-function popularTabela(clientes){
 
+function popularTabela(clientes) {
+
+    // Limpar a tabela...
     tabelaCliente.textContent = "";
 
     clientes.forEach(cliente => {
@@ -160,16 +176,15 @@ function popularTabela(clientes){
     });
 }
 
-
-function adicionarClienteBackend(cliente){
+function adicionarClienteBackEnd(cliente){
 
     cliente.dataCadastro = new Date().toISOString();
 
     fetch(URL, {
-        method: "POST",  // or 'PUT'
+        method: "POST",
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': "obterToken"
+            'Authorization': obterToken()
         },
         body : JSON.stringify(cliente)
     })
@@ -182,16 +197,24 @@ function adicionarClienteBackend(cliente){
         popularTabela(listaClientes)
 
         modalCliente.hide();
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Cliente cadastrado com sucesso!',
+            showConfirmButton: false,
+            timer: 2500
+        });
     })
     .catch(error => {
         console.log(error)
     })
 }
 
-function atualizarClienteBackend(cliente){
+
+function atualizarClienteBackEnd(cliente){
 
     fetch(`${URL}/${cliente.id}`, {
-        method: "PUT",  // or 'PUT'
+        method: "PUT",
         headers: {
             'Content-Type': 'application/json',
             'Authorization': obterToken()
@@ -200,27 +223,42 @@ function atualizarClienteBackend(cliente){
     })
     .then(response => response.json())
     .then(() => {
-       atualizarClienteNaLista(cliente, false);
-       modalCliente.hide();
+        atualizarClienteNaLista(cliente, false);
+        modalCliente.hide();
+
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Cliente atualizado com sucesso!',
+            showConfirmButton: false,
+            timer: 2500
+        });
     })
     .catch(error => {
         console.log(error)
-    });
+    })
 }
 
-function excluirClienteBackend(cliente){
+function excluirClienteBackEnd(cliente){
 
     fetch(`${URL}/${cliente.id}`, {
-        method: "DELETE",  // or 'PUT'
+        method: "DELETE",
         headers: {
             'Content-Type': 'application/json',
             'Authorization': obterToken()
-        },
+        }
     })
     .then(response => response.json())
     .then(() => {
-       atualizarClienteNaLista(cliente, true);
-       modalCliente.hide();
+        atualizarClienteNaLista(cliente, true);
+        modalCliente.hide();
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Cliente excluido com sucesso!',
+            showConfirmButton: false,
+            timer: 2500
+        });
     })
     .catch(error => {
         console.log(error)
@@ -231,7 +269,7 @@ function atualizarClienteNaLista(cliente, removerCliente){
 
     let indice = listaClientes.findIndex((c) => c.id == cliente.id);
 
-    (removerCliente)
+    (removerCliente) 
         ? listaClientes.splice(indice, 1)
         : listaClientes.splice(indice, 1, cliente);
 
@@ -239,5 +277,3 @@ function atualizarClienteNaLista(cliente, removerCliente){
 }
 
 obterClientes();
-
-

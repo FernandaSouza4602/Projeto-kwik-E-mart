@@ -9,13 +9,16 @@ btnEntrar.addEventListener('click', () => {
     let userSenha = senha.value; 
 
     if(!userEmail || !userSenha){
-        alert("Os campos de e-mail e senha são obrigatórios!");
+
+        Swal.fire({
+            icon: 'error',
+            text: 'Os campos de e-mail e senha são obrigatórios!',
+        });
+        //alert("Os campos de e-mail e senha são obrigatórios!");
         return;
     }
 
     autenticar(userEmail, userSenha);
-
-    window.open('controle-cliente.html', '_self')
 })
 
 
@@ -31,29 +34,30 @@ function autenticar(email, senha){
     })
     .then(response => response = response.json())
     .then(response => {
+
         if(!!response.mensagem){
             alert(response.mensagem);
             return;
 
         }else{
 
-        alert("Usuario autenticado com sucesso!");
-
         salvarToken(response.token);
         salvarUsuario(response.usuario);
+
+        mostrarLoading();
         
-        window.open('controle-cliente.html', '_self');
+        setTimeout(() =>{
+            window.open('controle-cliente.html', '_self');
+        }, 5000)
+
         }
-    })
-    .catch(erro => {
-        console.log(erro)
-    })
+    });
 }
 
-function salvarToken(token){
-    localStorage.setItem('token', token)
-}
+function mostrarLoading(){
+    const divLoading = document.querySelector('#loading');
+    divLoading.style.display='block';
 
-function salvarUsuario(usuario){
-    localStorage.setItem('usuario', JSON.stringify(usuario))
+    const divBoxLogin = document.querySelector('div.caixa-login')
+    divBoxLogin.style.display = 'none';
 }
