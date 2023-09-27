@@ -145,11 +145,12 @@ function criarLinhaNaTabela(cliente) {
     tdTelefone.textContent = cliente.telefone;
 
     tdAcoes.innerHTML = `<button onclick="editarCliente(${cliente.id})" class="btn btn-outline-primary btn-sm mr-3">
-                             Editar
-                         </button>
-                         <button onclick="excluirCliente(${cliente.id})" class="btn btn-outline-primary btn-sm mr-3">
-                             Excluir
-                         </button>`;
+        <i class="fas fa-pen"></i> Editar
+    </button>
+    <button onclick="excluirCliente(${cliente.id})" class="btn btn-outline-primary-disabled btn-sm">
+        <i class="fas fa-trash"></i> Excluir
+    </button>`;
+ 
 
 
 

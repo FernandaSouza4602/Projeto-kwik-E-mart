@@ -10,40 +10,97 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="./css/base.css">
 </head>
+
 <body>
     
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">    
-          <a class="navbar-brand" href="#">kwik-E-mart</a>
-          <button 
+    <nav class="navbar navbar-expand-sm navbar-light navbar-custom">
+      <div class="container-fluid">
+        <a class="navbar-brand me-auto" href="#">
+          <style>
+            .logo-container {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              height: 60px;
+            }
+
+            .logo-box-outline {
+              width: 160px;
+              height: 50px;
+              background-color: #3689c2;
+              border-radius: 10px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              position: relative;
+            }
+          
+            .logo-box {
+              width: 150px;
+              height: 40px;
+              background-color: white;
+              border-radius: 10px;
+              border: 5px solid #73b82a;        
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              position: relative;
+            }
+          
+            .logo-text {
+              font-size: 28px;
+              font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+              font-weight: regular;
+              color: #d30d08;
+              text-align: center;
+            }
+          </style>
+          </head>
+          <body>
+            <div class="logo-container">
+              <div class="logo-box-outline">
+              <div class="logo-box">
+                <div class="logo-text">kwik-E-mart</div>
+              </div>
+              </div>
+            </div>
+        </a>
+        <button 
           class="navbar-toggler" 
           type="button" 
           data-bs-toggle="collapse" 
           data-bs-target="#collapsibleNavbar"
           >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <!-- Navbar links -->
-          <div class="collapse navbar-collapse">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 m-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="/controle-cliente.html">Cliente</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/produto.html">Produtos</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/usuarios.html">Usuarios</a>
-              </li>
-            </ul>
-            </div>
-            
-            <ul class="navbar-nav">
-                <li onclick="sairSistema()" class="nav-item">
-                    <a class="nav-link" href="#">Sair</a>
-                </li>
-            </ul>
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Navbar links -->
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0 m-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/controle-cliente.html">Cliente</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/produto.html">Produtos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/usuarios.html">Usuarios</a>
+          </li>
+        </ul>
         </div>
-      </nav>
+
+        <ul class="navbar-nav ms-auto ">
+          <!-- Icons -->
+          <li onclick="sairSistema()" class="nav-item ms-auto">
+            <a class="nav-link" href="#">Sair
+              <i class="fas fa-door-open "></i>
+            </a>
+          </li>
+ 
+         </ul> 
+
+         
+      </div>
+    </nav>
 
       <div class="container">
 
@@ -58,7 +115,7 @@
             <div class="col-sm-3">
                 <button
                 id="btn-adicionar" 
-                class="btn btn-primary btn-sm"
+                class="btn btn-primary btn-sm "
                 >
                 Adicionar
             </button>

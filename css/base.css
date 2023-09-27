@@ -23,36 +23,75 @@ button.btn {
     min-width: 80px;
 }
 
-/*div.modal-dialog{
-    max-width: 700px;
-}  */
-
 #loading{
     display: none;
 }
 
-nav ul { 
-    list-style: none; 
-    margin: 0; 
-    padding: 0; 
-  } 
-   
-  nav ul li { 
-    display: inline-block; 
-  } 
-   
-  nav ul li a { 
-    display: block; 
-    padding: 10px 20px; /* adjust padding as needed */ 
-    text-decoration: none; 
-  } 
-   
-  nav ul li + li { 
-    margin-left: 80px; /* adjust margin as needed */ 
+.navbar-custom {
+    background-color: #4dadf0;
+}
+
+.btn-primary {
+    color: #eee;
+    background-color: #3689c2;
+    border-color: #3689c2;
+}
+
+#btn-adicionar:hover {
+    background-color: #02719c;
+    color: #eee;
+}
+
+#btn-salvar:hover {
+    background-color: #02719c;
+    color: #eee;
+}  
+
+#btn-cancelar:hover {
+    background-color: #940501;
+    color: #eee;
+}
+
+.btn-outline-primary {
+    color: #222;
+    background-color: transparent;
+    background-image: none;
+    border-color: #73b82a;
+    margin-block: 5px;
+}
+
+.btn-outline-primary:hover {
+    color: #eee;
+    background-color: #5c9420;
+    border-color: #5c9420;
+}
+
+.btn-outline-primary-disabled {
+    color: #222;
+    background-color: transparent;
+    background-image: none;
+    border-color: #d30d08;
+    margin-block: 5px;
+}
+
+.btn-outline-primary-disabled:hover {
+    color: #eee;
+    background-color: #d30d08;
+    border-color: #940501;
+}
+
+
+.nav-item{
+    font-size: x-large ;
+    height: auto;
+    padding-inline: 40px;
   }
 
-  .navbar-brand{
-  font-size: 35px;
-  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  margin-left: 20px;
+  .nav-link{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: white;
+  }
+
+  .nav-link:hover {
+    color: #d30d08;
   }

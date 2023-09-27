@@ -7,7 +7,8 @@
 .caixa-login {
     width: 250px;
     height: auto;
-    border: 1px solid #ddd;
+    background-color: whitesmoke;
+    border: 10px solid #3689c2;
     margin: auto;
     margin-top: 70px;
     padding: 20px;
@@ -16,7 +17,7 @@
 
 .titulo-login {
     text-align: center;
-    color: var(--cor-primaria);
+    color: #d30d08;
     font-size: 28px;
     font-weight: 700;
 }
@@ -36,7 +37,7 @@ input,
 
 #btn-entrar {
     margin-top: 10px;
-    background-color: var(--cor-primaria);
+    background-color: #73b82a;
     border: none;
     color: #fff;
     font-weight: 600;
@@ -44,7 +45,7 @@ input,
 
 #btn-entrar:hover {
     cursor: pointer;
-    background-color: var(--cor-secundaria);
+    background-color: #5c9420;
 }
 
 .esqueci-minha-senha {
@@ -54,8 +55,9 @@ input,
 }
 
 .esqueci-minha-senha a {
-    color: #673AB7;
+    color: #d30d08;
     text-decoration: none;
     font-size: 12px;
     font-weight: 700;
 }
+
