@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Produtos</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="./css/base.css">
+</head>
+
+<body>
+    
+    <nav class="navbar navbar-expand-sm navbar-light navbar-custom">
+      <div class="container-fluid">
+        <a class="navbar-brand me-auto" href="#">
+          <style>
+            .logo-container {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              height: 60px;
+            }
+
+            .logo-box-outline {
+              width: 160px;
+              height: 50px;
+              background-color: #3689c2;
+              border-radius: 10px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              position: relative;
+            }
+          
+            .logo-box {
+              width: 150px;
+              height: 40px;
+              background-color: white;
+              border-radius: 10px;
+              border: 5px solid #73b82a;        
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              position: relative;
+            }
+          
+            .logo-text {
+              font-size: 28px;
+              font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+              font-weight: regular;
+              color: #d30d08;
+              text-align: center;
+            }
+          </style>
+          </head>
+          <body>
+            <div class="logo-container">
+              <div class="logo-box-outline">
+              <div class="logo-box">
+                <div class="logo-text">kwik-E-mart</div>
+              </div>
+              </div>
+            </div>
+        </a>
+        <button 
+          class="navbar-toggler" 
+          type="button" 
+          data-bs-toggle="collapse" 
+          data-bs-target="#collapsibleNavbar"
+          >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Navbar links -->
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0 m-auto">
+          <li class="nav-item ">
+            <a class="nav-link" href="/controle-cliente.html">Cliente</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/controle-produto.html">Produtos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/controle-usuario.html">Usuarios</a>
+          </li>
+        </ul>
+        </div>
+
+        <ul class="navbar-nav ms-auto ">
+          <!-- Icons -->
+          <li onclick="sairSistema()" class="nav-item ms-auto">
+            <a class="nav-link" href="#">Sair
+              <i class="fas fa-door-open "></i>
+            </a>
+          </li>
+ 
+         </ul> 
+
+         
+      </div>
+    </nav>
+
+      <div class="container">
+
+        <div class="row mt-3">
+            <div class="col-sm-12">
+                <h4>Produtos</h4>
+                <hr>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3">
+                <button
+                id="btn-adicionar" 
+                class="btn btn-primary btn-sm "
+                >
+                Adicionar
+            </button>
+            </div>
+        </div>
+
+
+        <div class="row mt-3">
+            <div class="col-sm-12">
+
+                <table class="table table-bordered table-hover"> 
+                    <thead>
+                     <tr>
+                      <th>Id</th>
+                        <th>Nome</th>
+                        <th>Valor</th>
+                        <th>Estoque</th>
+                        <th>Observação</th>
+                        <th>Cadastro</th>
+                        <th></th>
+                     </tr>
+                    </thead>
+                    <tbody>
+            
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        
+        <div class="row">
+
+            <div class="modal fade modal-lg" id="modal-produto">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+              
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                      <h4 class="modal-title">Adicionar produto</h4>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+              
+                    <!-- Modal body -->
+                    <div class="modal-body">
+
+                        <div class="row">
+                          <div class="col-sm-2">
+                            <label for="id" class="form-label">Id</label>
+                            <input disabled type="text" class="form-control" id="id">                         
+                          </div>
+
+                          <div class="col-sm-10">
+                            <label for="nome" class="form-label">Nome</label>
+                            <input type="text" class="form-control" id="nome">                         
+                          </div>
+
+                          
+                        </div>
+
+                        <div class="row">
+
+                          <div class="col-sm-5">
+                            <label for="valor" class="form-label">Valor</label>
+                            <input type="text" class="form-control" id="valor">                         
+                           </div>
+
+                           <div class="col-sm-5">
+                            <label for="quantidadeEstoque" class="form-label">Estoque</label>
+                            <input type="text" class="form-control" id="quantidadeEstoque">                         
+                          </div>
+
+                        </div>
+
+                        <div class="row">
+
+                          <div class="col-sm-7">
+                            <label for="observacao" class="form-label">Observação</label>
+                            <input type="text" class="form-control" id="observacao">                         
+                          </div>
+
+                        <div class="col-sm-5">
+                          <label for="dataCadastro" class="form-label">Data de Cadastro</label>
+                          <input type="date" class="form-control" id="dataCadastro" disabled>                         
+                        </div>
+                      </div>
+
+    
+                    </div>
+              
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                      <button id="btn-salvar" class="btn btn-primary btn-sm">Salvar</button>
+                      <button id="btn-cancelar" class="btn btn-light btn-sm">Cancelar</button>
+                    </div>            
+                  </div>
+                </div>
+              </div>
+        </div>
+      </div>
+      
+      <script src="./js/base.js"></script>
+      <script src="./js/model/Produto.js"></script>
+      <script src="./js/controle-produto.js"></script>
+</body>
+</html>

@@ -12,6 +12,16 @@
     font-family: 'Quicksand', sans-serif;
 }
 
+[data-theme="light"] {
+    --color-bg: #eee;
+    --color-fg: #222;
+  }
+  
+  [data-theme="dark"] {
+    --color-bg: #222;
+    --color-fg: #eee;
+  }
+
 table.table {
     box-shadow: 0 0 10px 0 rgb(50 50 50 / 82% );
 }
@@ -36,6 +46,8 @@ button.btn {
     background-color: #3689c2;
     border-color: #3689c2;
 }
+
+
 
 #btn-adicionar:hover {
     background-color: #02719c;
@@ -95,3 +107,5 @@ button.btn {
   .nav-link:hover {
     color: #d30d08;
   }
+
+  

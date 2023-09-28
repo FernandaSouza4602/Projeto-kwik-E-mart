@@ -20,6 +20,7 @@ let formModal = {
     dataCadastro: document.getElementById('dataCadastro')
 }
 
+
 btnAdicionar.addEventListener('click', () =>{
     modoEdicao = false;
     tituloModal.textContent = "Adicionar cliente"
@@ -37,11 +38,7 @@ btnSalvar.addEventListener('click', () => {
         return;
     }
 
-    // if(modoEdicao){
-    //     atualizarClienteBackEnd(cliente);
-    // }else{
-    //     adicionarClienteBackEnd(cliente);
-    // }
+
 
     (modoEdicao) ? atualizarClienteBackEnd(cliente) : adicionarClienteBackEnd(cliente);
 
@@ -50,6 +47,8 @@ btnSalvar.addEventListener('click', () => {
 btnCancelar.addEventListener('click', () => {
     modalCliente.hide();
 });
+
+
 
 function obterClienteDoModal(){
 
@@ -104,7 +103,7 @@ function atualizarModalCliente(cliente){
 
 function limparModalCliente(){
 
-    formModal.id.value ="";
+    formModal.id.value = "";
     formModal.nome.value = "";
     formModal.cpf.value = "";
     formModal.email.value = "";
