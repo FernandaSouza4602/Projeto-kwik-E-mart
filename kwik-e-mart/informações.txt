@@ -1,0 +1,14 @@
+Criando um projeto react
+
+1° Criar a base do projeto
+    npx creat-react-app <kwik-e-mart>
+
+2° Limpar a base do projeto
+    public
+       Remover os 4 arquivos desnecessarios
+       Deve ficar somente o favicon.ico e index.html
+       Limpar o nosso html 
+    src
+       Remover os 6 arquivos desnecessarios
+       deve ficar somente App.js e index.js
+       Limpar nosso index.js

@@ -1,8 +1,9 @@
+import Login from "./pages/login";
 
 function App() {
   return (
     <div className="App">
-<h1>Teste</h1>
+    <Login/>
     </div>
   );
 }
