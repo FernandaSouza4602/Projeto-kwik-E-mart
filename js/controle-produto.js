@@ -12,18 +12,17 @@ let btnSalvar = document.getElementById('btn-salvar');
 let btnCancelar = document.getElementById('btn-cancelar');
 
 let formModal = {
-    id: document.getElementById('id'),
-    nome: document.getElementById('nome'),
-    valor: document.getElementById('valor'),
-    quantidadeEstoque: document.getElementById('quantidadeEstoque'),
-    observacao: document.getElementById('observacao'),
-    dataCadastro: document.getElementById('dataCadastro')
+    id: document.getElementById("id"),
+    nome: document.getElementById("nome"),
+    valor: document.getElementById("valor"),
+    quantidadeEstoque: document.getElementById("quantidadeEstoque"),
+    observacao: document.getElementById("observacao"),
+    dataCadastro: document.getElementById("dataCadastro")
 }
 
 btnAdicionar.addEventListener('click', () =>{
     modoEdicao = false;
     tituloModal.textContent = "Adicionar produto"
-    limparModalProduto();
     modalProduto.show();
 });
 
@@ -46,13 +45,7 @@ btnCancelar.addEventListener('click', () => {
     modalProduto.hide();
 });
 
-function limparModalProduto(){
-    formModal.id.value='';
-    formModal.nome.value="";
-    formModal.valor.value='';
-    formModal.quantidadeEstoque.value='';
-    
-}
+
 
 function obterProdutoDoModal(){
 
@@ -106,7 +99,14 @@ function atualizarModalProduto(produto){
     formModal.dataCadastro.value = produto.dataCadastro.substring(0,10);
 }
 
-
+function limparModalProduto() {
+    formModal.id.value = "";
+    formModal.nome.value = "";
+    formModal.cpf.value = "";
+    formModal.email.value = "";
+    formModal.telefone.value = "";
+    formModal.dataCadastro.value = "";
+  }
 
 function excluirProduto(id){
 
