@@ -3,15 +3,24 @@ ul.menu {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #3689c2;
+    background-color: var(--cor-primaria);
+    font-size: xx-large;
+    display: flex;
+    justify-content: space-between;
 }
+
+
+
+
 
 li {
     float: left;
+    
 }
 
-li:first-child{
-    margin-left: 25px;
+li:first-child {
+    margin-left: 22px;;
+
 }
 
 li a {
@@ -20,13 +29,17 @@ li a {
     padding: 15px 8px;
     text-decoration: none;
     text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    
 }
 
 li a:hover {
-    background-color: #02719c;
+    color: #d30d08;
 }
 
-li:last-child {
+li:last-child{
     float: right;
-    margin-right: 25px;
+    margin-right: 5px;
+    font-size: x-large;
+    margin-top: 8px;
 }
